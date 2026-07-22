@@ -148,6 +148,11 @@ Besides the symbol, you cannot customize any of the screeners or graphics. Do no
   try {
     const response = await generateText({
       model: groq(MODEL),
+      experimental_telemetry: {
+        isEnabled: process.env.AGENTPOND_ENABLED === 'true',
+        recordInputs: true,
+        recordOutputs: true
+      },
       messages: [
         {
           role: 'system',

@@ -74,6 +74,23 @@ pnpm dev
 
 Your app should now be running on [localhost:3000](http://localhost:3000/).
 
+## Optional AgentPond tracing
+
+StockBot can export supported AI SDK Core traces to a private Vercel Blob store through AgentPond. Initialize the Vercel setup, create a private Blob store with its system environment variables enabled, and then set `AGENTPOND_ENABLED=true` in the environments where tracing should run:
+
+```bash
+npx agentpond@0.6.0 init --platform vercel
+```
+
+The telemetry settings explicitly record inputs and outputs. This can include prompts, chat messages, stock symbols, tool data, and generated content. A private Blob store restricts access but does not redact these values; review the [Vercel AI SDK telemetry privacy controls](https://ai-sdk.dev/docs/ai-sdk-core/telemetry) before enabling tracing.
+
+To cache and inspect the resulting traces locally:
+
+```bash
+npx agentpond@0.6.0 sync
+npx agentpond@0.6.0 traces list --limit 10
+```
+
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) to see the latest changes and versions. Major versions are archived.
